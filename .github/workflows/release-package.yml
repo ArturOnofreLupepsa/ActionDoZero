@@ -1,0 +1,33 @@
+
+name: Release Package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+
+      - name: Criar arquivo ZIP
+        run: |
+          git archive \
+            --format=zip \
+            --output=release-package.zip \
+            "$GITHUB_SHA"
+
+      - name: Disponibilizar ZIP na Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            "$GITHUB_REF_NAME" \
+            release-package.zip \
+            --clobber
