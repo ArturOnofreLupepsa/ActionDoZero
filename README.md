@@ -51,6 +51,29 @@ Abaixo estão descritas as actions disponíveis neste repositório e a função 
 
 ---
 
+## commits "name: Gerar Changelog"
+
+          # Configura o nome do usuário do Git que fará o commit (nome padrão do bot)
+          git config user.name "github-actions[bot]"
+          # Configura o email oficial de sistema do bot do GitHub Actions
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Coloca o arquivo CHANGELOG.md modificado na área de preparação do Git (staging)
+          git add CHANGELOG.md
+
+          # "git diff --cached --quiet" verifica de forma silenciosa se houve alguma mudança real no arquivo.
+          # Se o arquivo estiver idêntico ao que já existia (nenhum commit novo), a condição é verdadeira.
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteracao no Changelog."
+          else
+            # Se houve mudança, cria o commit de fato. 
+            # A tag "[skip ci]" na mensagem é crucial: ela avisa ao GitHub para NÃO disparar este workflow de novo por causa deste commit.
+            git commit -m "docs(changelog): atualiza changelog [skip ci]"
+            # Envia as alterações (o commit) de volta para o repositório online
+            git push
+
+---
+
 ## 🛠️ Como Utilizar
 
 Para testar ou clonar este repositório em sua máquina:
