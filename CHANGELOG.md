@@ -4,6 +4,7 @@ Registro das ultimas alteracoes do projeto.
 
 ## Commits recentes
 
+- dea640c - Add instructions for generating CHANGELOG.md (2026-10-29)
 - e74cc87 - Readme explicando o trabalho e nome dos integrantes. (2026-10-22)
 - f304a5b - Add GitHub Actions workflow for release packaging (2026-10-15)
 - 7bf1099 - Create teste.md (2026-10-15)
